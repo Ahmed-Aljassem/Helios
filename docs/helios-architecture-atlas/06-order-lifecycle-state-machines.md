@@ -8,9 +8,9 @@ Red states are reachable invalid behavior or unclassified lifecycle events; dash
 |---|---|
 | Purpose and scope | Model every meaningful generic order state and transition, including invalid transitions. |
 | Evidence/status | Repository-derived state machine with audit-labeled invalid states. |
-| Source evidence | [orderbook.hpp](../../include/orderbook.hpp), [orderbook.cpp](../../src/orderbook.cpp), [price_level.hpp](../../include/price_level.hpp), [price_level.cpp](../../src/price_level.cpp), [object_pool.hpp](../../include/object_pool.hpp), [order.hpp](../../include/order.hpp), [itch_parser.hpp](../../include/itch_parser.hpp), [book_replay.hpp](../../include/book_replay.hpp), [itch_replay.cpp](../../benchmarks/itch_replay.cpp) |
-| Backlog | [COR-02](../../ENGINEERING_BACKLOG.md#cor-02--define-order-id-uniqueness-and-namespace-policy), [COR-03](../../ENGINEERING_BACKLOG.md#cor-03--define-zero-quantity-lifecycle-semantics), [COR-04](../../ENGINEERING_BACKLOG.md#cor-04--separate-reduce-and-quantity-increase-priority-semantics), [COR-06](../../ENGINEERING_BACKLOG.md#cor-06--define-mutation-exception-safety-guarantees), [PRO-01](../../ENGINEERING_BACKLOG.md#pro-01--introduce-structured-framing-and-decode-outcomes), [PRO-02](../../ENGINEERING_BACKLOG.md#pro-02--validate-session-and-order-lifecycle-integrity), [FUT-01](../../ENGINEERING_BACKLOG.md#fut-01--reassess-the-generic-objectpoolt-contract) |
-| Findings | [HEL-002](11-current-technical-debt-overlay.md#hel-002), [HEL-003](11-current-technical-debt-overlay.md#hel-003), [HEL-004](11-current-technical-debt-overlay.md#hel-004), [HEL-012](11-current-technical-debt-overlay.md#hel-012), [HEL-013](11-current-technical-debt-overlay.md#hel-013), [HEL-021](11-current-technical-debt-overlay.md#hel-021), [HEL-037](11-current-technical-debt-overlay.md#hel-037) |
+| Source evidence | [orderbook.hpp](../../include/orderbook.hpp), [orderbook.cpp](../../src/orderbook.cpp), [price_level.hpp](../../include/price_level.hpp) |
+| Backlog | [COR-02](../../ENGINEERING_BACKLOG.md#cor-02--define-order-id-uniqueness-and-namespace-policy), [COR-03](../../ENGINEERING_BACKLOG.md#cor-03--define-zero-quantity-lifecycle-semantics), [COR-04](../../ENGINEERING_BACKLOG.md#cor-04--separate-reduce-and-quantity-increase-priority-semantics), [VER-02](../../ENGINEERING_BACKLOG.md#ver-02--build-a-reference-book-and-differential-invariant-harness) |
+| Findings | [HEL-002](11-current-technical-debt-overlay.md#hel-002), [HEL-003](11-current-technical-debt-overlay.md#hel-003), [HEL-004](11-current-technical-debt-overlay.md#hel-004), [HEL-009](11-current-technical-debt-overlay.md#hel-009) |
 | Related atlas material | — |
 
 ```mermaid
@@ -42,8 +42,8 @@ flowchart LR
   - L -->|cancel/full fill| R
   - L -->|duplicate add| D
   - D -.->|COR-02| P
-- **What exists:** Solid CURRENT transitions are reachable in present code.
-- **What does not exist:** Proposed policy transitions are not implemented; red transitions are not validated into explicit outcomes.
+- **What exists:** The CURRENT/DEBT transitions in the generic order machine are reachable or directly derived from present code.
+- **What does not exist:** PROPOSED transitions in the generic order machine are unimplemented; INVALID states remain defects or unclassified outcomes.
 
 <a id="a06-02"></a>
 ### A06-02 — ITCH reference
@@ -52,9 +52,9 @@ flowchart LR
 |---|---|
 | Purpose and scope | Model every meaningful itch reference state and transition, including invalid transitions. |
 | Evidence/status | Repository-derived state machine with audit-labeled invalid states. |
-| Source evidence | [orderbook.hpp](../../include/orderbook.hpp), [orderbook.cpp](../../src/orderbook.cpp), [price_level.hpp](../../include/price_level.hpp), [price_level.cpp](../../src/price_level.cpp), [object_pool.hpp](../../include/object_pool.hpp), [order.hpp](../../include/order.hpp), [itch_parser.hpp](../../include/itch_parser.hpp), [book_replay.hpp](../../include/book_replay.hpp), [itch_replay.cpp](../../benchmarks/itch_replay.cpp) |
-| Backlog | [COR-02](../../ENGINEERING_BACKLOG.md#cor-02--define-order-id-uniqueness-and-namespace-policy), [COR-03](../../ENGINEERING_BACKLOG.md#cor-03--define-zero-quantity-lifecycle-semantics), [COR-04](../../ENGINEERING_BACKLOG.md#cor-04--separate-reduce-and-quantity-increase-priority-semantics), [COR-06](../../ENGINEERING_BACKLOG.md#cor-06--define-mutation-exception-safety-guarantees), [PRO-01](../../ENGINEERING_BACKLOG.md#pro-01--introduce-structured-framing-and-decode-outcomes), [PRO-02](../../ENGINEERING_BACKLOG.md#pro-02--validate-session-and-order-lifecycle-integrity), [FUT-01](../../ENGINEERING_BACKLOG.md#fut-01--reassess-the-generic-objectpoolt-contract) |
-| Findings | [HEL-002](11-current-technical-debt-overlay.md#hel-002), [HEL-003](11-current-technical-debt-overlay.md#hel-003), [HEL-004](11-current-technical-debt-overlay.md#hel-004), [HEL-012](11-current-technical-debt-overlay.md#hel-012), [HEL-013](11-current-technical-debt-overlay.md#hel-013), [HEL-021](11-current-technical-debt-overlay.md#hel-021), [HEL-037](11-current-technical-debt-overlay.md#hel-037) |
+| Source evidence | [book_replay.hpp](../../include/book_replay.hpp), [orderbook.cpp](../../src/orderbook.cpp) |
+| Backlog | [COR-02](../../ENGINEERING_BACKLOG.md#cor-02--define-order-id-uniqueness-and-namespace-policy), [PRO-02](../../ENGINEERING_BACKLOG.md#pro-02--validate-session-and-order-lifecycle-integrity) |
+| Findings | [HEL-002](11-current-technical-debt-overlay.md#hel-002), [HEL-037](11-current-technical-debt-overlay.md#hel-037) |
 | Related atlas material | — |
 
 ```mermaid
@@ -86,8 +86,8 @@ flowchart LR
   - U -->|D/X/E/C/U| B
   - R -->|D/X/E/C/U| A
   - L -->|A/F same ref| D
-- **What exists:** Solid CURRENT transitions are reachable in present code.
-- **What does not exist:** Proposed policy transitions are not implemented; red transitions are not validated into explicit outcomes.
+- **What exists:** The CURRENT/DEBT transitions in the itch reference machine are reachable or directly derived from present code.
+- **What does not exist:** PROPOSED transitions in the itch reference machine are unimplemented; INVALID states remain defects or unclassified outcomes.
 
 <a id="a06-03"></a>
 ### A06-03 — Pool slot
@@ -96,9 +96,9 @@ flowchart LR
 |---|---|
 | Purpose and scope | Model every meaningful pool slot state and transition, including invalid transitions. |
 | Evidence/status | Repository-derived state machine with audit-labeled invalid states. |
-| Source evidence | [orderbook.hpp](../../include/orderbook.hpp), [orderbook.cpp](../../src/orderbook.cpp), [price_level.hpp](../../include/price_level.hpp), [price_level.cpp](../../src/price_level.cpp), [object_pool.hpp](../../include/object_pool.hpp), [order.hpp](../../include/order.hpp), [itch_parser.hpp](../../include/itch_parser.hpp), [book_replay.hpp](../../include/book_replay.hpp), [itch_replay.cpp](../../benchmarks/itch_replay.cpp) |
-| Backlog | [COR-02](../../ENGINEERING_BACKLOG.md#cor-02--define-order-id-uniqueness-and-namespace-policy), [COR-03](../../ENGINEERING_BACKLOG.md#cor-03--define-zero-quantity-lifecycle-semantics), [COR-04](../../ENGINEERING_BACKLOG.md#cor-04--separate-reduce-and-quantity-increase-priority-semantics), [COR-06](../../ENGINEERING_BACKLOG.md#cor-06--define-mutation-exception-safety-guarantees), [PRO-01](../../ENGINEERING_BACKLOG.md#pro-01--introduce-structured-framing-and-decode-outcomes), [PRO-02](../../ENGINEERING_BACKLOG.md#pro-02--validate-session-and-order-lifecycle-integrity), [FUT-01](../../ENGINEERING_BACKLOG.md#fut-01--reassess-the-generic-objectpoolt-contract) |
-| Findings | [HEL-002](11-current-technical-debt-overlay.md#hel-002), [HEL-003](11-current-technical-debt-overlay.md#hel-003), [HEL-004](11-current-technical-debt-overlay.md#hel-004), [HEL-012](11-current-technical-debt-overlay.md#hel-012), [HEL-013](11-current-technical-debt-overlay.md#hel-013), [HEL-021](11-current-technical-debt-overlay.md#hel-021), [HEL-037](11-current-technical-debt-overlay.md#hel-037) |
+| Source evidence | [object_pool.hpp](../../include/object_pool.hpp) |
+| Backlog | [COR-07](../../ENGINEERING_BACKLOG.md#cor-07--define-capacity-and-growth-policy), [FUT-01](../../ENGINEERING_BACKLOG.md#fut-01--reassess-the-generic-objectpoolt-contract) |
+| Findings | [HEL-013](11-current-technical-debt-overlay.md#hel-013), [HEL-035](11-current-technical-debt-overlay.md#hel-035) |
 | Related atlas material | — |
 
 ```mermaid
@@ -129,8 +129,8 @@ flowchart LR
   - F -->|free list empty| G
   - G -->|new slots| F
   - C -->|pool destroyed| X
-- **What exists:** Solid CURRENT transitions are reachable in present code.
-- **What does not exist:** Proposed policy transitions are not implemented; red transitions are not validated into explicit outcomes.
+- **What exists:** The CURRENT/DEBT transitions in the pool slot machine are reachable or directly derived from present code.
+- **What does not exist:** PROPOSED transitions in the pool slot machine are unimplemented; INVALID states remain defects or unclassified outcomes.
 
 <a id="a06-04"></a>
 ### A06-04 — Price level
@@ -139,9 +139,9 @@ flowchart LR
 |---|---|
 | Purpose and scope | Model every meaningful price level state and transition, including invalid transitions. |
 | Evidence/status | Repository-derived state machine with audit-labeled invalid states. |
-| Source evidence | [orderbook.hpp](../../include/orderbook.hpp), [orderbook.cpp](../../src/orderbook.cpp), [price_level.hpp](../../include/price_level.hpp), [price_level.cpp](../../src/price_level.cpp), [object_pool.hpp](../../include/object_pool.hpp), [order.hpp](../../include/order.hpp), [itch_parser.hpp](../../include/itch_parser.hpp), [book_replay.hpp](../../include/book_replay.hpp), [itch_replay.cpp](../../benchmarks/itch_replay.cpp) |
-| Backlog | [COR-02](../../ENGINEERING_BACKLOG.md#cor-02--define-order-id-uniqueness-and-namespace-policy), [COR-03](../../ENGINEERING_BACKLOG.md#cor-03--define-zero-quantity-lifecycle-semantics), [COR-04](../../ENGINEERING_BACKLOG.md#cor-04--separate-reduce-and-quantity-increase-priority-semantics), [COR-06](../../ENGINEERING_BACKLOG.md#cor-06--define-mutation-exception-safety-guarantees), [PRO-01](../../ENGINEERING_BACKLOG.md#pro-01--introduce-structured-framing-and-decode-outcomes), [PRO-02](../../ENGINEERING_BACKLOG.md#pro-02--validate-session-and-order-lifecycle-integrity), [FUT-01](../../ENGINEERING_BACKLOG.md#fut-01--reassess-the-generic-objectpoolt-contract) |
-| Findings | [HEL-002](11-current-technical-debt-overlay.md#hel-002), [HEL-003](11-current-technical-debt-overlay.md#hel-003), [HEL-004](11-current-technical-debt-overlay.md#hel-004), [HEL-012](11-current-technical-debt-overlay.md#hel-012), [HEL-013](11-current-technical-debt-overlay.md#hel-013), [HEL-021](11-current-technical-debt-overlay.md#hel-021), [HEL-037](11-current-technical-debt-overlay.md#hel-037) |
+| Source evidence | [price_level.hpp](../../include/price_level.hpp), [price_level.cpp](../../src/price_level.cpp), [orderbook.cpp](../../src/orderbook.cpp) |
+| Backlog | [COR-03](../../ENGINEERING_BACKLOG.md#cor-03--define-zero-quantity-lifecycle-semantics), [COR-05](../../ENGINEERING_BACKLOG.md#cor-05--harden-numeric-and-construction-boundaries), [VER-02](../../ENGINEERING_BACKLOG.md#ver-02--build-a-reference-book-and-differential-invariant-harness) |
+| Findings | [HEL-003](11-current-technical-debt-overlay.md#hel-003), [HEL-009](11-current-technical-debt-overlay.md#hel-009), [HEL-020](11-current-technical-debt-overlay.md#hel-020) |
 | Related atlas material | — |
 
 ```mermaid
@@ -169,8 +169,8 @@ flowchart LR
   - O -->|remove last| E
   - E -->|zero-quantity add| Z
   - O -->|unchecked underflow/bad membership| X
-- **What exists:** Solid CURRENT transitions are reachable in present code.
-- **What does not exist:** Proposed policy transitions are not implemented; red transitions are not validated into explicit outcomes.
+- **What exists:** The CURRENT/DEBT transitions in the price level machine are reachable or directly derived from present code.
+- **What does not exist:** PROPOSED transitions in the price level machine are unimplemented; INVALID states remain defects or unclassified outcomes.
 
 <a id="a06-05"></a>
 ### A06-05 — Bitmap bit
@@ -179,9 +179,9 @@ flowchart LR
 |---|---|
 | Purpose and scope | Model every meaningful bitmap bit state and transition, including invalid transitions. |
 | Evidence/status | Repository-derived state machine with audit-labeled invalid states. |
-| Source evidence | [orderbook.hpp](../../include/orderbook.hpp), [orderbook.cpp](../../src/orderbook.cpp), [price_level.hpp](../../include/price_level.hpp), [price_level.cpp](../../src/price_level.cpp), [object_pool.hpp](../../include/object_pool.hpp), [order.hpp](../../include/order.hpp), [itch_parser.hpp](../../include/itch_parser.hpp), [book_replay.hpp](../../include/book_replay.hpp), [itch_replay.cpp](../../benchmarks/itch_replay.cpp) |
-| Backlog | [COR-02](../../ENGINEERING_BACKLOG.md#cor-02--define-order-id-uniqueness-and-namespace-policy), [COR-03](../../ENGINEERING_BACKLOG.md#cor-03--define-zero-quantity-lifecycle-semantics), [COR-04](../../ENGINEERING_BACKLOG.md#cor-04--separate-reduce-and-quantity-increase-priority-semantics), [COR-06](../../ENGINEERING_BACKLOG.md#cor-06--define-mutation-exception-safety-guarantees), [PRO-01](../../ENGINEERING_BACKLOG.md#pro-01--introduce-structured-framing-and-decode-outcomes), [PRO-02](../../ENGINEERING_BACKLOG.md#pro-02--validate-session-and-order-lifecycle-integrity), [FUT-01](../../ENGINEERING_BACKLOG.md#fut-01--reassess-the-generic-objectpoolt-contract) |
-| Findings | [HEL-002](11-current-technical-debt-overlay.md#hel-002), [HEL-003](11-current-technical-debt-overlay.md#hel-003), [HEL-004](11-current-technical-debt-overlay.md#hel-004), [HEL-012](11-current-technical-debt-overlay.md#hel-012), [HEL-013](11-current-technical-debt-overlay.md#hel-013), [HEL-021](11-current-technical-debt-overlay.md#hel-021), [HEL-037](11-current-technical-debt-overlay.md#hel-037) |
+| Source evidence | [orderbook.hpp](../../include/orderbook.hpp), [orderbook.cpp](../../src/orderbook.cpp) |
+| Backlog | [VER-02](../../ENGINEERING_BACKLOG.md#ver-02--build-a-reference-book-and-differential-invariant-harness), [BEN-09](../../ENGINEERING_BACKLOG.md#ben-09--measure-bitmap-refresh-complexity-and-alternatives) |
+| Findings | [HEL-009](11-current-technical-debt-overlay.md#hel-009), [HEL-027](11-current-technical-debt-overlay.md#hel-027) |
 | Related atlas material | — |
 
 ```mermaid
@@ -206,8 +206,8 @@ flowchart LR
   - S -->|last order removed| C
   - C -->|occupied level without set| X
   - S -->|empty level without clear| X
-- **What exists:** Solid CURRENT transitions are reachable in present code.
-- **What does not exist:** Proposed policy transitions are not implemented; red transitions are not validated into explicit outcomes.
+- **What exists:** The CURRENT/DEBT transitions in the bitmap bit machine are reachable or directly derived from present code.
+- **What does not exist:** PROPOSED transitions in the bitmap bit machine are unimplemented; INVALID states remain defects or unclassified outcomes.
 
 <a id="a06-06"></a>
 ### A06-06 — Cached best
@@ -216,9 +216,9 @@ flowchart LR
 |---|---|
 | Purpose and scope | Model every meaningful cached best state and transition, including invalid transitions. |
 | Evidence/status | Repository-derived state machine with audit-labeled invalid states. |
-| Source evidence | [orderbook.hpp](../../include/orderbook.hpp), [orderbook.cpp](../../src/orderbook.cpp), [price_level.hpp](../../include/price_level.hpp), [price_level.cpp](../../src/price_level.cpp), [object_pool.hpp](../../include/object_pool.hpp), [order.hpp](../../include/order.hpp), [itch_parser.hpp](../../include/itch_parser.hpp), [book_replay.hpp](../../include/book_replay.hpp), [itch_replay.cpp](../../benchmarks/itch_replay.cpp) |
-| Backlog | [COR-02](../../ENGINEERING_BACKLOG.md#cor-02--define-order-id-uniqueness-and-namespace-policy), [COR-03](../../ENGINEERING_BACKLOG.md#cor-03--define-zero-quantity-lifecycle-semantics), [COR-04](../../ENGINEERING_BACKLOG.md#cor-04--separate-reduce-and-quantity-increase-priority-semantics), [COR-06](../../ENGINEERING_BACKLOG.md#cor-06--define-mutation-exception-safety-guarantees), [PRO-01](../../ENGINEERING_BACKLOG.md#pro-01--introduce-structured-framing-and-decode-outcomes), [PRO-02](../../ENGINEERING_BACKLOG.md#pro-02--validate-session-and-order-lifecycle-integrity), [FUT-01](../../ENGINEERING_BACKLOG.md#fut-01--reassess-the-generic-objectpoolt-contract) |
-| Findings | [HEL-002](11-current-technical-debt-overlay.md#hel-002), [HEL-003](11-current-technical-debt-overlay.md#hel-003), [HEL-004](11-current-technical-debt-overlay.md#hel-004), [HEL-012](11-current-technical-debt-overlay.md#hel-012), [HEL-013](11-current-technical-debt-overlay.md#hel-013), [HEL-021](11-current-technical-debt-overlay.md#hel-021), [HEL-037](11-current-technical-debt-overlay.md#hel-037) |
+| Source evidence | [orderbook.hpp](../../include/orderbook.hpp), [orderbook.cpp](../../src/orderbook.cpp) |
+| Backlog | [VER-02](../../ENGINEERING_BACKLOG.md#ver-02--build-a-reference-book-and-differential-invariant-harness), [BEN-09](../../ENGINEERING_BACKLOG.md#ben-09--measure-bitmap-refresh-complexity-and-alternatives) |
+| Findings | [HEL-009](11-current-technical-debt-overlay.md#hel-009), [HEL-027](11-current-technical-debt-overlay.md#hel-027) |
 | Related atlas material | — |
 
 ```mermaid
@@ -248,8 +248,8 @@ flowchart LR
   - R -->|found| B
   - R -->|none| N
   - B -->|missed bitmap/cache update| X
-- **What exists:** Solid CURRENT transitions are reachable in present code.
-- **What does not exist:** Proposed policy transitions are not implemented; red transitions are not validated into explicit outcomes.
+- **What exists:** The CURRENT/DEBT transitions in the cached best machine are reachable or directly derived from present code.
+- **What does not exist:** PROPOSED transitions in the cached best machine are unimplemented; INVALID states remain defects or unclassified outcomes.
 
 <a id="a06-07"></a>
 ### A06-07 — Decoded message
@@ -258,9 +258,9 @@ flowchart LR
 |---|---|
 | Purpose and scope | Model every meaningful decoded message state and transition, including invalid transitions. |
 | Evidence/status | Repository-derived state machine with audit-labeled invalid states. |
-| Source evidence | [orderbook.hpp](../../include/orderbook.hpp), [orderbook.cpp](../../src/orderbook.cpp), [price_level.hpp](../../include/price_level.hpp), [price_level.cpp](../../src/price_level.cpp), [object_pool.hpp](../../include/object_pool.hpp), [order.hpp](../../include/order.hpp), [itch_parser.hpp](../../include/itch_parser.hpp), [book_replay.hpp](../../include/book_replay.hpp), [itch_replay.cpp](../../benchmarks/itch_replay.cpp) |
-| Backlog | [COR-02](../../ENGINEERING_BACKLOG.md#cor-02--define-order-id-uniqueness-and-namespace-policy), [COR-03](../../ENGINEERING_BACKLOG.md#cor-03--define-zero-quantity-lifecycle-semantics), [COR-04](../../ENGINEERING_BACKLOG.md#cor-04--separate-reduce-and-quantity-increase-priority-semantics), [COR-06](../../ENGINEERING_BACKLOG.md#cor-06--define-mutation-exception-safety-guarantees), [PRO-01](../../ENGINEERING_BACKLOG.md#pro-01--introduce-structured-framing-and-decode-outcomes), [PRO-02](../../ENGINEERING_BACKLOG.md#pro-02--validate-session-and-order-lifecycle-integrity), [FUT-01](../../ENGINEERING_BACKLOG.md#fut-01--reassess-the-generic-objectpoolt-contract) |
-| Findings | [HEL-002](11-current-technical-debt-overlay.md#hel-002), [HEL-003](11-current-technical-debt-overlay.md#hel-003), [HEL-004](11-current-technical-debt-overlay.md#hel-004), [HEL-012](11-current-technical-debt-overlay.md#hel-012), [HEL-013](11-current-technical-debt-overlay.md#hel-013), [HEL-021](11-current-technical-debt-overlay.md#hel-021), [HEL-037](11-current-technical-debt-overlay.md#hel-037) |
+| Source evidence | [itch_parser.hpp](../../include/itch_parser.hpp) |
+| Backlog | [PRO-01](../../ENGINEERING_BACKLOG.md#pro-01--introduce-structured-framing-and-decode-outcomes), [VER-01](../../ENGINEERING_BACKLOG.md#ver-01--build-protocol-golden-fixtures), [VER-05](../../ENGINEERING_BACKLOG.md#ver-05--add-sanitizer-fuzzing-and-boundary-verification-strategy) |
+| Findings | [HEL-011](11-current-technical-debt-overlay.md#hel-011), [HEL-012](11-current-technical-debt-overlay.md#hel-012), [HEL-022](11-current-technical-debt-overlay.md#hel-022) |
 | Related atlas material | — |
 
 ```mermaid
@@ -292,8 +292,8 @@ flowchart LR
   - M -->|callback| C
   - U -.->|PRO-01| P
   - F -.->|PRO-01| P
-- **What exists:** Solid CURRENT transitions are reachable in present code.
-- **What does not exist:** Proposed policy transitions are not implemented; red transitions are not validated into explicit outcomes.
+- **What exists:** The CURRENT/DEBT transitions in the decoded message machine are reachable or directly derived from present code.
+- **What does not exist:** PROPOSED transitions in the decoded message machine are unimplemented; INVALID states remain defects or unclassified outcomes.
 
 <a id="a06-08"></a>
 ### A06-08 — Mapped file
@@ -302,9 +302,9 @@ flowchart LR
 |---|---|
 | Purpose and scope | Model every meaningful mapped file state and transition, including invalid transitions. |
 | Evidence/status | Repository-derived state machine with audit-labeled invalid states. |
-| Source evidence | [orderbook.hpp](../../include/orderbook.hpp), [orderbook.cpp](../../src/orderbook.cpp), [price_level.hpp](../../include/price_level.hpp), [price_level.cpp](../../src/price_level.cpp), [object_pool.hpp](../../include/object_pool.hpp), [order.hpp](../../include/order.hpp), [itch_parser.hpp](../../include/itch_parser.hpp), [book_replay.hpp](../../include/book_replay.hpp), [itch_replay.cpp](../../benchmarks/itch_replay.cpp) |
-| Backlog | [COR-02](../../ENGINEERING_BACKLOG.md#cor-02--define-order-id-uniqueness-and-namespace-policy), [COR-03](../../ENGINEERING_BACKLOG.md#cor-03--define-zero-quantity-lifecycle-semantics), [COR-04](../../ENGINEERING_BACKLOG.md#cor-04--separate-reduce-and-quantity-increase-priority-semantics), [COR-06](../../ENGINEERING_BACKLOG.md#cor-06--define-mutation-exception-safety-guarantees), [PRO-01](../../ENGINEERING_BACKLOG.md#pro-01--introduce-structured-framing-and-decode-outcomes), [PRO-02](../../ENGINEERING_BACKLOG.md#pro-02--validate-session-and-order-lifecycle-integrity), [FUT-01](../../ENGINEERING_BACKLOG.md#fut-01--reassess-the-generic-objectpoolt-contract) |
-| Findings | [HEL-002](11-current-technical-debt-overlay.md#hel-002), [HEL-003](11-current-technical-debt-overlay.md#hel-003), [HEL-004](11-current-technical-debt-overlay.md#hel-004), [HEL-012](11-current-technical-debt-overlay.md#hel-012), [HEL-013](11-current-technical-debt-overlay.md#hel-013), [HEL-021](11-current-technical-debt-overlay.md#hel-021), [HEL-037](11-current-technical-debt-overlay.md#hel-037) |
+| Source evidence | [itch_replay.cpp](../../benchmarks/itch_replay.cpp), [itch_book_replay.cpp](../../benchmarks/itch_book_replay.cpp) |
+| Backlog | [PRO-06](../../ENGINEERING_BACKLOG.md#pro-06--specify-portable-file-mapping-and-prefault-behavior) |
+| Findings | [HEL-026](11-current-technical-debt-overlay.md#hel-026) |
 | Related atlas material | — |
 
 ```mermaid
@@ -336,5 +336,5 @@ flowchart LR
   - P -->|parse then munmap/close| U
   - N -->|unchecked args/open in itch_replay| X
   - FD -->|unchecked fstat/empty mapping| X
-- **What exists:** Solid CURRENT transitions are reachable in present code.
-- **What does not exist:** Proposed policy transitions are not implemented; red transitions are not validated into explicit outcomes.
+- **What exists:** The CURRENT/DEBT transitions in the mapped file machine are reachable or directly derived from present code.
+- **What does not exist:** PROPOSED transitions in the mapped file machine are unimplemented; INVALID states remain defects or unclassified outcomes.

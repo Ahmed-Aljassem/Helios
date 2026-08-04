@@ -34,8 +34,8 @@ flowchart LR
   - Ownership: a symbol-directory router owns a map of symbol → independently owned book.
   - Routing/concurrency: single writer can route sequentially; cross-book concurrency is external.
   - Publication remains outside the mutation owner.
-- **What exists:** Helios supplies a single-book/single-writer research core that can inform the option.
-- **What does not exist:** The router, multiple instruments, concurrency, isolation, and publication nodes are absent.
+- **What exists:** The current single-book/single-writer research core can inform the one book per symbol alternative.
+- **What does not exist:** The routing, multi-instrument ownership, isolation, and publication required by one book per symbol are absent.
 
 | Dimension | Analysis |
 |---|---|
@@ -81,8 +81,8 @@ flowchart LR
   - Ownership: session directory maps daily locate → independently owned book.
   - Routing/concurrency: single session writer routes O(1) after directory event.
   - Publication remains outside the mutation owner.
-- **What exists:** Helios supplies a single-book/single-writer research core that can inform the option.
-- **What does not exist:** The router, multiple instruments, concurrency, isolation, and publication nodes are absent.
+- **What exists:** The current single-book/single-writer research core can inform the one book per stock locate alternative.
+- **What does not exist:** The routing, multi-instrument ownership, isolation, and publication required by one book per stock locate are absent.
 
 | Dimension | Analysis |
 |---|---|
@@ -128,8 +128,8 @@ flowchart LR
   - Ownership: router hashes/ranges instruments to shard queues; one owner thread per shard.
   - Routing/concurrency: no shared book mutation; ordering preserved per instrument inside a shard.
   - Publication remains outside the mutation owner.
-- **What exists:** Helios supplies a single-book/single-writer research core that can inform the option.
-- **What does not exist:** The router, multiple instruments, concurrency, isolation, and publication nodes are absent.
+- **What exists:** The current single-book/single-writer research core can inform the single-writer multi-instrument shards alternative.
+- **What does not exist:** The routing, multi-instrument ownership, isolation, and publication required by single-writer multi-instrument shards are absent.
 
 | Dimension | Analysis |
 |---|---|
@@ -175,8 +175,8 @@ flowchart LR
   - Ownership: directory creates dense book lazily and retires under explicit policy.
   - Routing/concurrency: single writer remains straightforward; lifecycle around activation matters.
   - Publication remains outside the mutation owner.
-- **What exists:** Helios supplies a single-book/single-writer research core that can inform the option.
-- **What does not exist:** The router, multiple instruments, concurrency, isolation, and publication nodes are absent.
+- **What exists:** The current single-book/single-writer research core can inform the dense ladders only for active instruments alternative.
+- **What does not exist:** The routing, multi-instrument ownership, isolation, and publication required by dense ladders only for active instruments are absent.
 
 | Dimension | Analysis |
 |---|---|
@@ -222,8 +222,8 @@ flowchart LR
   - Ownership: book owns allocated price segments or ordered sparse levels.
   - Routing/concurrency: single writer possible; shared segment allocators are avoided.
   - Publication remains outside the mutation owner.
-- **What exists:** Helios supplies a single-book/single-writer research core that can inform the option.
-- **What does not exist:** The router, multiple instruments, concurrency, isolation, and publication nodes are absent.
+- **What exists:** The current single-book/single-writer research core can inform the segmented or sparse ladders alternative.
+- **What does not exist:** The routing, multi-instrument ownership, isolation, and publication required by segmented or sparse ladders are absent.
 
 | Dimension | Analysis |
 |---|---|

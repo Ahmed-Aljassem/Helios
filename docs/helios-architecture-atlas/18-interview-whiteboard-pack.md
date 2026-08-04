@@ -8,9 +8,9 @@ Each board is deliberately small enough to redraw. Narration expands by adding i
 |---|---|
 | Purpose and scope | Provide a minimal, redrawable whole system interview board. |
 | Evidence/status | CURRENT/DEBT where tracked; context/research explicitly marked. |
-| Source evidence | [orderbook.hpp](../../include/orderbook.hpp), [orderbook.cpp](../../src/orderbook.cpp), [price_level.hpp](../../include/price_level.hpp), [price_level.cpp](../../src/price_level.cpp), [object_pool.hpp](../../include/object_pool.hpp), [order.hpp](../../include/order.hpp), [itch_parser.hpp](../../include/itch_parser.hpp), [book_replay.hpp](../../include/book_replay.hpp), [benchmark_orderbook.cpp](../../benchmarks/benchmark_orderbook.cpp) |
-| Backlog | [DOC-01](../../ENGINEERING_BACKLOG.md#doc-01--reconcile-architecture-and-evidence-documentation), [DOC-03](../../ENGINEERING_BACKLOG.md#doc-03--define-performance-claim-vocabulary), [FUT-02](../../ENGINEERING_BACKLOG.md#fut-02--design-multi-symbol-single-writer-sharding), [FUT-06](../../ENGINEERING_BACKLOG.md#fut-06--design-real-time-ingestion-boundaries) |
-| Findings | [HEL-001](11-current-technical-debt-overlay.md#hel-001), [HEL-002](11-current-technical-debt-overlay.md#hel-002), [HEL-005](11-current-technical-debt-overlay.md#hel-005), [HEL-042](11-current-technical-debt-overlay.md#hel-042) |
+| Source evidence | [itch_parser.hpp](../../include/itch_parser.hpp), [book_replay.hpp](../../include/book_replay.hpp), [orderbook.hpp](../../include/orderbook.hpp) |
+| Backlog | [DOC-01](../../ENGINEERING_BACKLOG.md#doc-01--reconcile-architecture-and-evidence-documentation), [COR-08](../../ENGINEERING_BACKLOG.md#cor-08--separate-reconstruction-and-matching-semantics), [COR-01](../../ENGINEERING_BACKLOG.md#cor-01--establish-a-lossless-price-domain-model), [BEN-01](../../ENGINEERING_BACKLOG.md#ben-01--make-build-and-benchmark-provenance-reproducible) |
+| Findings | [HEL-001](11-current-technical-debt-overlay.md#hel-001), [HEL-005](11-current-technical-debt-overlay.md#hel-005), [HEL-042](11-current-technical-debt-overlay.md#hel-042) |
 | Related atlas material | — |
 
 ```mermaid
@@ -34,8 +34,8 @@ flowchart LR
   - F --> P
   - P --> B
   - B --> V
-- **What exists:** Only green/amber/red current nodes describe the repository.
-- **What does not exist:** Gray/blue research or context is not implemented.
+- **What exists:** The CURRENT/DEBT portions of the whole system board map to tracked code or evidence.
+- **What does not exist:** Any PROPOSED, RESEARCH, or CONTEXT element on the whole system board remains unimplemented.
 
 - **Drawing order:** input → decode/replay → book → evidence.
 - **30 seconds:** Helios is an offline single-writer research system.
@@ -53,9 +53,9 @@ flowchart LR
 |---|---|
 | Purpose and scope | Provide a minimal, redrawable book internals interview board. |
 | Evidence/status | CURRENT/DEBT where tracked; context/research explicitly marked. |
-| Source evidence | [orderbook.hpp](../../include/orderbook.hpp), [orderbook.cpp](../../src/orderbook.cpp), [price_level.hpp](../../include/price_level.hpp), [price_level.cpp](../../src/price_level.cpp), [object_pool.hpp](../../include/object_pool.hpp), [order.hpp](../../include/order.hpp), [itch_parser.hpp](../../include/itch_parser.hpp), [book_replay.hpp](../../include/book_replay.hpp), [benchmark_orderbook.cpp](../../benchmarks/benchmark_orderbook.cpp) |
-| Backlog | [DOC-01](../../ENGINEERING_BACKLOG.md#doc-01--reconcile-architecture-and-evidence-documentation), [DOC-03](../../ENGINEERING_BACKLOG.md#doc-03--define-performance-claim-vocabulary), [FUT-02](../../ENGINEERING_BACKLOG.md#fut-02--design-multi-symbol-single-writer-sharding), [FUT-06](../../ENGINEERING_BACKLOG.md#fut-06--design-real-time-ingestion-boundaries) |
-| Findings | [HEL-001](11-current-technical-debt-overlay.md#hel-001), [HEL-002](11-current-technical-debt-overlay.md#hel-002), [HEL-005](11-current-technical-debt-overlay.md#hel-005), [HEL-042](11-current-technical-debt-overlay.md#hel-042) |
+| Source evidence | [orderbook.hpp](../../include/orderbook.hpp), [price_level.hpp](../../include/price_level.hpp), [object_pool.hpp](../../include/object_pool.hpp) |
+| Backlog | [COR-02](../../ENGINEERING_BACKLOG.md#cor-02--define-order-id-uniqueness-and-namespace-policy), [VER-02](../../ENGINEERING_BACKLOG.md#ver-02--build-a-reference-book-and-differential-invariant-harness), [BEN-02](../../ENGINEERING_BACKLOG.md#ben-02--produce-a-complete-allocation-map-of-each-hot-operation) |
+| Findings | [HEL-002](11-current-technical-debt-overlay.md#hel-002), [HEL-006](11-current-technical-debt-overlay.md#hel-006), [HEL-009](11-current-technical-debt-overlay.md#hel-009) |
 | Related atlas material | — |
 
 ```mermaid
@@ -82,8 +82,8 @@ flowchart LR
   - L --> Q
   - P --> Q
   - L --> B
-- **What exists:** Only green/amber/red current nodes describe the repository.
-- **What does not exist:** Gray/blue research or context is not implemented.
+- **What exists:** The CURRENT/DEBT portions of the book internals board map to tracked code or evidence.
+- **What does not exist:** Any PROPOSED, RESEARCH, or CONTEXT element on the book internals board remains unimplemented.
 
 - **Drawing order:** hash, two ladders, one queue, pool, bitmap.
 - **30 seconds:** Four structures coordinate one live order.
@@ -101,9 +101,9 @@ flowchart LR
 |---|---|
 | Purpose and scope | Provide a minimal, redrawable add interview board. |
 | Evidence/status | CURRENT/DEBT where tracked; context/research explicitly marked. |
-| Source evidence | [orderbook.hpp](../../include/orderbook.hpp), [orderbook.cpp](../../src/orderbook.cpp), [price_level.hpp](../../include/price_level.hpp), [price_level.cpp](../../src/price_level.cpp), [object_pool.hpp](../../include/object_pool.hpp), [order.hpp](../../include/order.hpp), [itch_parser.hpp](../../include/itch_parser.hpp), [book_replay.hpp](../../include/book_replay.hpp), [benchmark_orderbook.cpp](../../benchmarks/benchmark_orderbook.cpp) |
-| Backlog | [DOC-01](../../ENGINEERING_BACKLOG.md#doc-01--reconcile-architecture-and-evidence-documentation), [DOC-03](../../ENGINEERING_BACKLOG.md#doc-03--define-performance-claim-vocabulary), [FUT-02](../../ENGINEERING_BACKLOG.md#fut-02--design-multi-symbol-single-writer-sharding), [FUT-06](../../ENGINEERING_BACKLOG.md#fut-06--design-real-time-ingestion-boundaries) |
-| Findings | [HEL-001](11-current-technical-debt-overlay.md#hel-001), [HEL-002](11-current-technical-debt-overlay.md#hel-002), [HEL-005](11-current-technical-debt-overlay.md#hel-005), [HEL-042](11-current-technical-debt-overlay.md#hel-042) |
+| Source evidence | [orderbook.cpp](../../src/orderbook.cpp), [object_pool.hpp](../../include/object_pool.hpp) |
+| Backlog | [COR-02](../../ENGINEERING_BACKLOG.md#cor-02--define-order-id-uniqueness-and-namespace-policy), [COR-06](../../ENGINEERING_BACKLOG.md#cor-06--define-mutation-exception-safety-guarantees) |
+| Findings | [HEL-002](11-current-technical-debt-overlay.md#hel-002), [HEL-021](11-current-technical-debt-overlay.md#hel-021) |
 | Related atlas material | — |
 
 ```mermaid
@@ -130,8 +130,8 @@ flowchart LR
   - P --> M
   - M --> Q
   - Q --> B
-- **What exists:** Only green/amber/red current nodes describe the repository.
-- **What does not exist:** Gray/blue research or context is not implemented.
+- **What exists:** The CURRENT/DEBT portions of the add board map to tracked code or evidence.
+- **What does not exist:** Any PROPOSED, RESEARCH, or CONTEXT element on the add board remains unimplemented.
 
 - **Drawing order:** validate → acquire → index → append → derived state.
 - **30 seconds:** Add is a multi-structure transaction.
@@ -149,9 +149,9 @@ flowchart LR
 |---|---|
 | Purpose and scope | Provide a minimal, redrawable cancel interview board. |
 | Evidence/status | CURRENT/DEBT where tracked; context/research explicitly marked. |
-| Source evidence | [orderbook.hpp](../../include/orderbook.hpp), [orderbook.cpp](../../src/orderbook.cpp), [price_level.hpp](../../include/price_level.hpp), [price_level.cpp](../../src/price_level.cpp), [object_pool.hpp](../../include/object_pool.hpp), [order.hpp](../../include/order.hpp), [itch_parser.hpp](../../include/itch_parser.hpp), [book_replay.hpp](../../include/book_replay.hpp), [benchmark_orderbook.cpp](../../benchmarks/benchmark_orderbook.cpp) |
-| Backlog | [DOC-01](../../ENGINEERING_BACKLOG.md#doc-01--reconcile-architecture-and-evidence-documentation), [DOC-03](../../ENGINEERING_BACKLOG.md#doc-03--define-performance-claim-vocabulary), [FUT-02](../../ENGINEERING_BACKLOG.md#fut-02--design-multi-symbol-single-writer-sharding), [FUT-06](../../ENGINEERING_BACKLOG.md#fut-06--design-real-time-ingestion-boundaries) |
-| Findings | [HEL-001](11-current-technical-debt-overlay.md#hel-001), [HEL-002](11-current-technical-debt-overlay.md#hel-002), [HEL-005](11-current-technical-debt-overlay.md#hel-005), [HEL-042](11-current-technical-debt-overlay.md#hel-042) |
+| Source evidence | [orderbook.cpp](../../src/orderbook.cpp), [price_level.cpp](../../src/price_level.cpp) |
+| Backlog | [VER-02](../../ENGINEERING_BACKLOG.md#ver-02--build-a-reference-book-and-differential-invariant-harness), [BEN-09](../../ENGINEERING_BACKLOG.md#ben-09--measure-bitmap-refresh-complexity-and-alternatives) |
+| Findings | [HEL-009](11-current-technical-debt-overlay.md#hel-009), [HEL-027](11-current-technical-debt-overlay.md#hel-027) |
 | Related atlas material | — |
 
 ```mermaid
@@ -178,8 +178,8 @@ flowchart LR
   - Q --> B
   - B --> M
   - M --> P
-- **What exists:** Only green/amber/red current nodes describe the repository.
-- **What does not exist:** Gray/blue research or context is not implemented.
+- **What exists:** The CURRENT/DEBT portions of the cancel board map to tracked code or evidence.
+- **What does not exist:** Any PROPOSED, RESEARCH, or CONTEXT element on the cancel board remains unimplemented.
 
 - **Drawing order:** lookup → unlink → derived state → erase → free.
 - **30 seconds:** Cancel uses the ID index to remove in O(1) except best rescan.
@@ -197,9 +197,9 @@ flowchart LR
 |---|---|
 | Purpose and scope | Provide a minimal, redrawable replay interview board. |
 | Evidence/status | CURRENT/DEBT where tracked; context/research explicitly marked. |
-| Source evidence | [orderbook.hpp](../../include/orderbook.hpp), [orderbook.cpp](../../src/orderbook.cpp), [price_level.hpp](../../include/price_level.hpp), [price_level.cpp](../../src/price_level.cpp), [object_pool.hpp](../../include/object_pool.hpp), [order.hpp](../../include/order.hpp), [itch_parser.hpp](../../include/itch_parser.hpp), [book_replay.hpp](../../include/book_replay.hpp), [benchmark_orderbook.cpp](../../benchmarks/benchmark_orderbook.cpp) |
-| Backlog | [DOC-01](../../ENGINEERING_BACKLOG.md#doc-01--reconcile-architecture-and-evidence-documentation), [DOC-03](../../ENGINEERING_BACKLOG.md#doc-03--define-performance-claim-vocabulary), [FUT-02](../../ENGINEERING_BACKLOG.md#fut-02--design-multi-symbol-single-writer-sharding), [FUT-06](../../ENGINEERING_BACKLOG.md#fut-06--design-real-time-ingestion-boundaries) |
-| Findings | [HEL-001](11-current-technical-debt-overlay.md#hel-001), [HEL-002](11-current-technical-debt-overlay.md#hel-002), [HEL-005](11-current-technical-debt-overlay.md#hel-005), [HEL-042](11-current-technical-debt-overlay.md#hel-042) |
+| Source evidence | [itch_parser.hpp](../../include/itch_parser.hpp), [book_replay.hpp](../../include/book_replay.hpp) |
+| Backlog | [COR-01](../../ENGINEERING_BACKLOG.md#cor-01--establish-a-lossless-price-domain-model), [PRO-01](../../ENGINEERING_BACKLOG.md#pro-01--introduce-structured-framing-and-decode-outcomes), [PRO-02](../../ENGINEERING_BACKLOG.md#pro-02--validate-session-and-order-lifecycle-integrity) |
+| Findings | [HEL-001](11-current-technical-debt-overlay.md#hel-001), [HEL-012](11-current-technical-debt-overlay.md#hel-012), [HEL-037](11-current-technical-debt-overlay.md#hel-037) |
 | Related atlas material | — |
 
 ```mermaid
@@ -226,8 +226,8 @@ flowchart LR
   - D --> S
   - S --> R
   - R --> B
-- **What exists:** Only green/amber/red current nodes describe the repository.
-- **What does not exist:** Gray/blue research or context is not implemented.
+- **What exists:** The CURRENT/DEBT portions of the replay board map to tracked code or evidence.
+- **What does not exist:** Any PROPOSED, RESEARCH, or CONTEXT element on the replay board remains unimplemented.
 
 - **Drawing order:** frame → decode → filter → translate → mutate.
 - **30 seconds:** Replay reconstructs one target symbol from historical order events.
@@ -245,9 +245,9 @@ flowchart LR
 |---|---|
 | Purpose and scope | Provide a minimal, redrawable ownership interview board. |
 | Evidence/status | CURRENT/DEBT where tracked; context/research explicitly marked. |
-| Source evidence | [orderbook.hpp](../../include/orderbook.hpp), [orderbook.cpp](../../src/orderbook.cpp), [price_level.hpp](../../include/price_level.hpp), [price_level.cpp](../../src/price_level.cpp), [object_pool.hpp](../../include/object_pool.hpp), [order.hpp](../../include/order.hpp), [itch_parser.hpp](../../include/itch_parser.hpp), [book_replay.hpp](../../include/book_replay.hpp), [benchmark_orderbook.cpp](../../benchmarks/benchmark_orderbook.cpp) |
-| Backlog | [DOC-01](../../ENGINEERING_BACKLOG.md#doc-01--reconcile-architecture-and-evidence-documentation), [DOC-03](../../ENGINEERING_BACKLOG.md#doc-03--define-performance-claim-vocabulary), [FUT-02](../../ENGINEERING_BACKLOG.md#fut-02--design-multi-symbol-single-writer-sharding), [FUT-06](../../ENGINEERING_BACKLOG.md#fut-06--design-real-time-ingestion-boundaries) |
-| Findings | [HEL-001](11-current-technical-debt-overlay.md#hel-001), [HEL-002](11-current-technical-debt-overlay.md#hel-002), [HEL-005](11-current-technical-debt-overlay.md#hel-005), [HEL-042](11-current-technical-debt-overlay.md#hel-042) |
+| Source evidence | [object_pool.hpp](../../include/object_pool.hpp), [orderbook.hpp](../../include/orderbook.hpp) |
+| Backlog | [COR-06](../../ENGINEERING_BACKLOG.md#cor-06--define-mutation-exception-safety-guarantees), [FUT-01](../../ENGINEERING_BACKLOG.md#fut-01--reassess-the-generic-objectpoolt-contract) |
+| Findings | [HEL-013](11-current-technical-debt-overlay.md#hel-013), [HEL-021](11-current-technical-debt-overlay.md#hel-021) |
 | Related atlas material | — |
 
 ```mermaid
@@ -271,8 +271,8 @@ flowchart LR
   - B --> P
   - P --> O
   - M -.-> O
-- **What exists:** Only green/amber/red current nodes describe the repository.
-- **What does not exist:** Gray/blue research or context is not implemented.
+- **What exists:** The CURRENT/DEBT portions of the ownership board map to tracked code or evidence.
+- **What does not exist:** Any PROPOSED, RESEARCH, or CONTEXT element on the ownership board remains unimplemented.
 
 - **Drawing order:** book → pool → order; map/level dotted observation.
 - **30 seconds:** Pool storage owns orders; indexes and queues hold raw observers.
@@ -290,9 +290,9 @@ flowchart LR
 |---|---|
 | Purpose and scope | Provide a minimal, redrawable ladder and bitmap interview board. |
 | Evidence/status | CURRENT/DEBT where tracked; context/research explicitly marked. |
-| Source evidence | [orderbook.hpp](../../include/orderbook.hpp), [orderbook.cpp](../../src/orderbook.cpp), [price_level.hpp](../../include/price_level.hpp), [price_level.cpp](../../src/price_level.cpp), [object_pool.hpp](../../include/object_pool.hpp), [order.hpp](../../include/order.hpp), [itch_parser.hpp](../../include/itch_parser.hpp), [book_replay.hpp](../../include/book_replay.hpp), [benchmark_orderbook.cpp](../../benchmarks/benchmark_orderbook.cpp) |
-| Backlog | [DOC-01](../../ENGINEERING_BACKLOG.md#doc-01--reconcile-architecture-and-evidence-documentation), [DOC-03](../../ENGINEERING_BACKLOG.md#doc-03--define-performance-claim-vocabulary), [FUT-02](../../ENGINEERING_BACKLOG.md#fut-02--design-multi-symbol-single-writer-sharding), [FUT-06](../../ENGINEERING_BACKLOG.md#fut-06--design-real-time-ingestion-boundaries) |
-| Findings | [HEL-001](11-current-technical-debt-overlay.md#hel-001), [HEL-002](11-current-technical-debt-overlay.md#hel-002), [HEL-005](11-current-technical-debt-overlay.md#hel-005), [HEL-042](11-current-technical-debt-overlay.md#hel-042) |
+| Source evidence | [orderbook.hpp](../../include/orderbook.hpp), [orderbook.cpp](../../src/orderbook.cpp) |
+| Backlog | [BEN-09](../../ENGINEERING_BACKLOG.md#ben-09--measure-bitmap-refresh-complexity-and-alternatives), [BEN-10](../../ENGINEERING_BACKLOG.md#ben-10--measure-compact-versus-cache-line-aligned-order-layouts), [FUT-04](../../ENGINEERING_BACKLOG.md#fut-04--evaluate-segmented-or-compressed-price-ladders) |
+| Findings | [HEL-017](11-current-technical-debt-overlay.md#hel-017), [HEL-027](11-current-technical-debt-overlay.md#hel-027), [HEL-036](11-current-technical-debt-overlay.md#hel-036) |
 | Related atlas material | — |
 
 ```mermaid
@@ -316,8 +316,8 @@ flowchart LR
   - P --> L
   - L --> W
   - W --> C
-- **What exists:** Only green/amber/red current nodes describe the repository.
-- **What does not exist:** Gray/blue research or context is not implemented.
+- **What exists:** The CURRENT/DEBT portions of the ladder and bitmap board map to tracked code or evidence.
+- **What does not exist:** Any PROPOSED, RESEARCH, or CONTEXT element on the ladder and bitmap board remains unimplemented.
 
 - **Drawing order:** price index → array → bit → cached best.
 - **30 seconds:** Dense access is direct; bitmap finds next occupied best.
@@ -335,9 +335,9 @@ flowchart LR
 |---|---|
 | Purpose and scope | Provide a minimal, redrawable intrusive fifo interview board. |
 | Evidence/status | CURRENT/DEBT where tracked; context/research explicitly marked. |
-| Source evidence | [orderbook.hpp](../../include/orderbook.hpp), [orderbook.cpp](../../src/orderbook.cpp), [price_level.hpp](../../include/price_level.hpp), [price_level.cpp](../../src/price_level.cpp), [object_pool.hpp](../../include/object_pool.hpp), [order.hpp](../../include/order.hpp), [itch_parser.hpp](../../include/itch_parser.hpp), [book_replay.hpp](../../include/book_replay.hpp), [benchmark_orderbook.cpp](../../benchmarks/benchmark_orderbook.cpp) |
-| Backlog | [DOC-01](../../ENGINEERING_BACKLOG.md#doc-01--reconcile-architecture-and-evidence-documentation), [DOC-03](../../ENGINEERING_BACKLOG.md#doc-03--define-performance-claim-vocabulary), [FUT-02](../../ENGINEERING_BACKLOG.md#fut-02--design-multi-symbol-single-writer-sharding), [FUT-06](../../ENGINEERING_BACKLOG.md#fut-06--design-real-time-ingestion-boundaries) |
-| Findings | [HEL-001](11-current-technical-debt-overlay.md#hel-001), [HEL-002](11-current-technical-debt-overlay.md#hel-002), [HEL-005](11-current-technical-debt-overlay.md#hel-005), [HEL-042](11-current-technical-debt-overlay.md#hel-042) |
+| Source evidence | [order.hpp](../../include/order.hpp), [price_level.hpp](../../include/price_level.hpp), [price_level.cpp](../../src/price_level.cpp) |
+| Backlog | [COR-04](../../ENGINEERING_BACKLOG.md#cor-04--separate-reduce-and-quantity-increase-priority-semantics), [VER-02](../../ENGINEERING_BACKLOG.md#ver-02--build-a-reference-book-and-differential-invariant-harness) |
+| Findings | [HEL-004](11-current-technical-debt-overlay.md#hel-004), [HEL-009](11-current-technical-debt-overlay.md#hel-009) |
 | Related atlas material | — |
 
 ```mermaid
@@ -362,8 +362,8 @@ flowchart LR
   - M --> T
   - T -->|prev| M
   - M -->|prev| H
-- **What exists:** Only green/amber/red current nodes describe the repository.
-- **What does not exist:** Gray/blue research or context is not implemented.
+- **What exists:** The CURRENT/DEBT portions of the intrusive fifo board map to tracked code or evidence.
+- **What does not exist:** Any PROPOSED, RESEARCH, or CONTEXT element on the intrusive fifo board remains unimplemented.
 
 - **Drawing order:** head ↔ middle ↔ tail.
 - **30 seconds:** Orders carry queue links, removing separate nodes.
@@ -381,9 +381,9 @@ flowchart LR
 |---|---|
 | Purpose and scope | Provide a minimal, redrawable benchmark method interview board. |
 | Evidence/status | CURRENT/DEBT where tracked; context/research explicitly marked. |
-| Source evidence | [orderbook.hpp](../../include/orderbook.hpp), [orderbook.cpp](../../src/orderbook.cpp), [price_level.hpp](../../include/price_level.hpp), [price_level.cpp](../../src/price_level.cpp), [object_pool.hpp](../../include/object_pool.hpp), [order.hpp](../../include/order.hpp), [itch_parser.hpp](../../include/itch_parser.hpp), [book_replay.hpp](../../include/book_replay.hpp), [benchmark_orderbook.cpp](../../benchmarks/benchmark_orderbook.cpp) |
-| Backlog | [DOC-01](../../ENGINEERING_BACKLOG.md#doc-01--reconcile-architecture-and-evidence-documentation), [DOC-03](../../ENGINEERING_BACKLOG.md#doc-03--define-performance-claim-vocabulary), [FUT-02](../../ENGINEERING_BACKLOG.md#fut-02--design-multi-symbol-single-writer-sharding), [FUT-06](../../ENGINEERING_BACKLOG.md#fut-06--design-real-time-ingestion-boundaries) |
-| Findings | [HEL-001](11-current-technical-debt-overlay.md#hel-001), [HEL-002](11-current-technical-debt-overlay.md#hel-002), [HEL-005](11-current-technical-debt-overlay.md#hel-005), [HEL-042](11-current-technical-debt-overlay.md#hel-042) |
+| Source evidence | [benchmark_orderbook.cpp](../../benchmarks/benchmark_orderbook.cpp), [rdtsc_timer.hpp](../../include/rdtsc_timer.hpp), [CMakeLists.txt](../../CMakeLists.txt) |
+| Backlog | [BEN-01](../../ENGINEERING_BACKLOG.md#ben-01--make-build-and-benchmark-provenance-reproducible), [BEN-03](../../ENGINEERING_BACKLOG.md#ben-03--replace-the-add-only-headline-with-a-workload-portfolio), [BEN-04](../../ENGINEERING_BACKLOG.md#ben-04--redesign-latency-statistics-and-timer-overhead-treatment), [BEN-05](../../ENGINEERING_BACKLOG.md#ben-05--verify-cpu-affinity-tsc-capability-and-platform-gating), [DOC-03](../../ENGINEERING_BACKLOG.md#doc-03--define-performance-claim-vocabulary) |
+| Findings | [HEL-005](11-current-technical-debt-overlay.md#hel-005), [HEL-028](11-current-technical-debt-overlay.md#hel-028), [HEL-029](11-current-technical-debt-overlay.md#hel-029), [HEL-030](11-current-technical-debt-overlay.md#hel-030), [HEL-031](11-current-technical-debt-overlay.md#hel-031), [HEL-033](11-current-technical-debt-overlay.md#hel-033) |
 | Related atlas material | — |
 
 ```mermaid
@@ -410,8 +410,8 @@ flowchart LR
   - W --> T
   - T --> R
   - R --> C
-- **What exists:** Only green/amber/red current nodes describe the repository.
-- **What does not exist:** Gray/blue research or context is not implemented.
+- **What exists:** The CURRENT/DEBT portions of the benchmark method board map to tracked code or evidence.
+- **What does not exist:** Any PROPOSED, RESEARCH, or CONTEXT element on the benchmark method board remains unimplemented.
 
 - **Drawing order:** manifest → workload → timing → raw data → claim.
 - **30 seconds:** A benchmark is an experiment contract, not one number.
@@ -429,9 +429,9 @@ flowchart LR
 |---|---|
 | Purpose and scope | Provide a minimal, redrawable current versus production interview board. |
 | Evidence/status | CURRENT/DEBT where tracked; context/research explicitly marked. |
-| Source evidence | [orderbook.hpp](../../include/orderbook.hpp), [orderbook.cpp](../../src/orderbook.cpp), [price_level.hpp](../../include/price_level.hpp), [price_level.cpp](../../src/price_level.cpp), [object_pool.hpp](../../include/object_pool.hpp), [order.hpp](../../include/order.hpp), [itch_parser.hpp](../../include/itch_parser.hpp), [book_replay.hpp](../../include/book_replay.hpp), [benchmark_orderbook.cpp](../../benchmarks/benchmark_orderbook.cpp) |
-| Backlog | [DOC-01](../../ENGINEERING_BACKLOG.md#doc-01--reconcile-architecture-and-evidence-documentation), [DOC-03](../../ENGINEERING_BACKLOG.md#doc-03--define-performance-claim-vocabulary), [FUT-02](../../ENGINEERING_BACKLOG.md#fut-02--design-multi-symbol-single-writer-sharding), [FUT-06](../../ENGINEERING_BACKLOG.md#fut-06--design-real-time-ingestion-boundaries) |
-| Findings | [HEL-001](11-current-technical-debt-overlay.md#hel-001), [HEL-002](11-current-technical-debt-overlay.md#hel-002), [HEL-005](11-current-technical-debt-overlay.md#hel-005), [HEL-042](11-current-technical-debt-overlay.md#hel-042) |
+| Source evidence | [README.md](../../README.md), [13-production-redesign.md](../../docs/helios-study-guide/13-production-redesign.md) |
+| Backlog | [COR-08](../../ENGINEERING_BACKLOG.md#cor-08--separate-reconstruction-and-matching-semantics), [FUT-06](../../ENGINEERING_BACKLOG.md#fut-06--design-real-time-ingestion-boundaries), [FUT-07](../../ENGINEERING_BACKLOG.md#fut-07--decide-whether-helios-will-ever-include-matching-engine-semantics) |
+| Findings | [HEL-037](11-current-technical-debt-overlay.md#hel-037), [HEL-042](11-current-technical-debt-overlay.md#hel-042) |
 | Related atlas material | — |
 
 ```mermaid
@@ -452,8 +452,8 @@ flowchart LR
 - **Important edges**
   - H -.->|possible experimental input| C
   - C -.-> P
-- **What exists:** Only green/amber/red current nodes describe the repository.
-- **What does not exist:** Gray/blue research or context is not implemented.
+- **What exists:** The CURRENT/DEBT portions of the current versus production board map to tracked code or evidence.
+- **What does not exist:** Any PROPOSED, RESEARCH, or CONTEXT element on the current versus production board remains unimplemented.
 
 - **Drawing order:** solid current island; dotted context rings.
 - **30 seconds:** Helios is not a production trading system.
@@ -471,9 +471,9 @@ flowchart LR
 |---|---|
 | Purpose and scope | Provide a minimal, redrawable multi-symbol sharding interview board. |
 | Evidence/status | CURRENT/DEBT where tracked; context/research explicitly marked. |
-| Source evidence | [orderbook.hpp](../../include/orderbook.hpp), [orderbook.cpp](../../src/orderbook.cpp), [price_level.hpp](../../include/price_level.hpp), [price_level.cpp](../../src/price_level.cpp), [object_pool.hpp](../../include/object_pool.hpp), [order.hpp](../../include/order.hpp), [itch_parser.hpp](../../include/itch_parser.hpp), [book_replay.hpp](../../include/book_replay.hpp), [benchmark_orderbook.cpp](../../benchmarks/benchmark_orderbook.cpp) |
-| Backlog | [DOC-01](../../ENGINEERING_BACKLOG.md#doc-01--reconcile-architecture-and-evidence-documentation), [DOC-03](../../ENGINEERING_BACKLOG.md#doc-03--define-performance-claim-vocabulary), [FUT-02](../../ENGINEERING_BACKLOG.md#fut-02--design-multi-symbol-single-writer-sharding), [FUT-06](../../ENGINEERING_BACKLOG.md#fut-06--design-real-time-ingestion-boundaries) |
-| Findings | [HEL-001](11-current-technical-debt-overlay.md#hel-001), [HEL-002](11-current-technical-debt-overlay.md#hel-002), [HEL-005](11-current-technical-debt-overlay.md#hel-005), [HEL-042](11-current-technical-debt-overlay.md#hel-042) |
+| Source evidence | [orderbook.hpp](../../include/orderbook.hpp), [book_replay.hpp](../../include/book_replay.hpp), [13-production-redesign.md](../../docs/helios-study-guide/13-production-redesign.md) |
+| Backlog | [FUT-02](../../ENGINEERING_BACKLOG.md#fut-02--design-multi-symbol-single-writer-sharding), [FUT-04](../../ENGINEERING_BACKLOG.md#fut-04--evaluate-segmented-or-compressed-price-ladders), [FUT-06](../../ENGINEERING_BACKLOG.md#fut-06--design-real-time-ingestion-boundaries) |
+| Findings | [HEL-024](11-current-technical-debt-overlay.md#hel-024), [HEL-036](11-current-technical-debt-overlay.md#hel-036), [HEL-037](11-current-technical-debt-overlay.md#hel-037), [HEL-042](11-current-technical-debt-overlay.md#hel-042) |
 | Related atlas material | — |
 
 ```mermaid
@@ -499,8 +499,8 @@ flowchart LR
   - R -.-> S2
   - S1 -.-> P
   - S2 -.-> P
-- **What exists:** Only green/amber/red current nodes describe the repository.
-- **What does not exist:** Gray/blue research or context is not implemented.
+- **What exists:** The CURRENT/DEBT portions of the multi-symbol sharding board map to tracked code or evidence.
+- **What does not exist:** Any PROPOSED, RESEARCH, or CONTEXT element on the multi-symbol sharding board remains unimplemented.
 
 - **Drawing order:** router → owned shards → immutable publication.
 - **30 seconds:** Scale by partitioning ownership, not shared book mutation.

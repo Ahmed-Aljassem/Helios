@@ -48,8 +48,8 @@ flowchart LR
   - B -->|owns| MAP
   - B -->|owns| L
   - B -->|owns| BM
-- **What exists:** All solid CURRENT components shown are tracked; observed pointers are non-owning.
-- **What does not exist:** No smart pointer owns individual live orders; no concurrent ownership or synchronization exists.
+- **What exists:** The solid CURRENT relationships in the domain and book components view are tracked; dotted observations do not own their targets.
+- **What does not exist:** The domain and book components view introduces no concurrent ownership, synchronization, or per-order smart-pointer ownership.
 
 <a id="a03-02"></a>
 ### A03-02 — Parser, replay, timing, and executables
@@ -92,8 +92,8 @@ flowchart LR
   - R -->|mutates| B
   - X -->|uses| T
   - X -->|constructs| B
-- **What exists:** All solid CURRENT components shown are tracked; observed pointers are non-owning.
-- **What does not exist:** No smart pointer owns individual live orders; no concurrent ownership or synchronization exists.
+- **What exists:** The solid CURRENT relationships in the parser, replay, timing, and executables view are tracked; dotted observations do not own their targets.
+- **What does not exist:** The parser, replay, timing, and executables view introduces no concurrent ownership, synchronization, or per-order smart-pointer ownership.
 
 <a id="a03-03"></a>
 ### A03-03 — Source-to-component map
@@ -103,7 +103,7 @@ flowchart LR
 | Purpose and scope | Source-to-component map with explicit dependency or ownership semantics. |
 | Evidence/status | Repository evidence; DEBT denotes present limitations. |
 | Source evidence | [types.hpp](../../include/types.hpp), [order.hpp](../../include/order.hpp), [price_level.hpp](../../include/price_level.hpp), [price_level.cpp](../../src/price_level.cpp), [object_pool.hpp](../../include/object_pool.hpp), [orderbook.hpp](../../include/orderbook.hpp), [orderbook.cpp](../../src/orderbook.cpp), [itch_parser.hpp](../../include/itch_parser.hpp), [book_replay.hpp](../../include/book_replay.hpp), [rdtsc_timer.hpp](../../include/rdtsc_timer.hpp) |
-| Backlog | [INF-02](../../ENGINEERING_BACKLOG.md#inf-02--modernize-target-scoped-cmake-behavior), [DOC-01](../../ENGINEERING_BACKLOG.md#doc-01--reconcile-architecture-and-evidence-documentation) |
+| Backlog | [INF-02](../../ENGINEERING_BACKLOG.md#inf-02--modernize-target-scoped-cmake-behavior), [DOC-01](../../ENGINEERING_BACKLOG.md#doc-01--reconcile-architecture-and-evidence-documentation), [DOC-02](../../ENGINEERING_BACKLOG.md#doc-02--align-language-standard-and-platform-claims) |
 | Findings | [HEL-010](11-current-technical-debt-overlay.md#hel-010), [HEL-047](11-current-technical-debt-overlay.md#hel-047) |
 | Related atlas material | — |
 
@@ -139,8 +139,8 @@ flowchart LR
   - H4 -->|linked/called by| E
   - H5 -->|included/called by| E
   - H6 -->|included by benchmark| E
-- **What exists:** All solid CURRENT components shown are tracked; observed pointers are non-owning.
-- **What does not exist:** No smart pointer owns individual live orders; no concurrent ownership or synchronization exists.
+- **What exists:** The solid CURRENT relationships in the source-to-component map view are tracked; dotted observations do not own their targets.
+- **What does not exist:** The source-to-component map view introduces no concurrent ownership, synchronization, or per-order smart-pointer ownership.
 
 <a id="a03-04"></a>
 ### A03-04 — Owning versus observing pointers
@@ -188,8 +188,8 @@ flowchart LR
   - PL -.->|observes| O
   - LINK -.->|observes peer orders| O
   - R -.->|observes Book| B
-- **What exists:** All solid CURRENT components shown are tracked; observed pointers are non-owning.
-- **What does not exist:** No smart pointer owns individual live orders; no concurrent ownership or synchronization exists.
+- **What exists:** The solid CURRENT relationships in the owning versus observing pointers view are tracked; dotted observations do not own their targets.
+- **What does not exist:** The owning versus observing pointers view introduces no concurrent ownership, synchronization, or per-order smart-pointer ownership.
 
 ## Component catalog
 

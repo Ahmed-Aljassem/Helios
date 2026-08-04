@@ -140,7 +140,7 @@ This document plans work only. It does not authorize or contain implementation c
 ## COR-08 — Separate reconstruction and matching semantics
 
 - **Priority:** P3
-- **Audit findings:** HEL-042
+- **Audit findings:** HEL-004, HEL-042
 - **Difficulty:** M
 - **Dependencies:** COR-04
 - **Outcome:** A crisp architectural boundary between displayed-book reconstruction and synthetic or exchange-style matching.
@@ -467,7 +467,7 @@ This document plans work only. It does not authorize or contain implementation c
 ## DOC-03 — Define performance-claim vocabulary
 
 - **Priority:** P2
-- **Audit findings:** HEL-023, HEL-028, HEL-029, HEL-033
+- **Audit findings:** HEL-023, HEL-028, HEL-029, HEL-033, HEL-044
 - **Difficulty:** S
 - **Dependencies:** PRO-04, BEN-03, BEN-04, BEN-07
 - **Outcome:** Consistent definitions for operation, modeled message, wire message, target event, mean, percentile, maximum, throughput, and end-to-end replay.
@@ -651,7 +651,8 @@ Every audit finding is assigned to at least one backlog item.
 | HEL-036 | BEN-10; later FUT-02, FUT-04, FUT-05 |
 | HEL-037 | PRO-02; later FUT-06 |
 | HEL-038 | PRO-05 |
-| HEL-039, HEL-041 | COR-09 |
+| HEL-039 | COR-09; later FUT-07 |
+| HEL-041 | COR-09 |
 | HEL-042 | COR-08; later FUT-02, FUT-06, FUT-07 |
 | HEL-043 | BEN-01 |
 | HEL-045 | BEN-08; later FUT-03 |
@@ -824,7 +825,7 @@ The assigned journal files should contain only the relevant reusable template wh
 
 | Observation | Evidence class | Artifact |
 |---|---|---|
-| <Observation> | Repository | External | Measured | Inference | <Link> |
+| <Observation> | <Repository / External / Measured / Inference> | <Link> |
 
 ## Root-cause assessment
 
@@ -1085,7 +1086,7 @@ The assigned journal files should contain only the relevant reusable template wh
 
 | Claim | Evidence class | Supporting artifact | Current confidence |
 |---|---|---|---|
-| <Claim> | Repository | External | Measured | Inference | <Link> | <Confidence> |
+| <Claim> | <Repository / External / Measured / Inference> | <Link> | <Confidence> |
 
 ## Contradictions or stale material
 

@@ -39,8 +39,8 @@ flowchart LR
   - F -->|zero/truncated| S
   - D -->|unsupported or malformed| S
   - S -.->|PRO-01| P
-- **What exists:** The CURRENT/DEBT paths and their weak signals are present.
-- **What does not exist:** Proposed structured errors, rollback, platform gates, and CI are not implemented.
+- **What exists:** The CURRENT/DEBT paths and weak signals in the ingress and protocol view are present.
+- **What does not exist:** The proposed correction boundary in the ingress and protocol view is not implemented.
 
 <a id="a10-02"></a>
 ### A10-02 — Book and state
@@ -75,8 +75,8 @@ flowchart LR
   - A --> B
   - B -->|unguarded transitions| D
   - D -.->|COR policies| R
-- **What exists:** The CURRENT/DEBT paths and their weak signals are present.
-- **What does not exist:** Proposed structured errors, rollback, platform gates, and CI are not implemented.
+- **What exists:** The CURRENT/DEBT paths and weak signals in the book and state view are present.
+- **What does not exist:** The proposed correction boundary in the book and state view is not implemented.
 
 <a id="a10-03"></a>
 ### A10-03 — Allocation and capacity
@@ -114,8 +114,8 @@ flowchart LR
   - G --> H
   - H -->|throws after pool acquisition| X
   - X -.->|COR-06/07| C
-- **What exists:** The CURRENT/DEBT paths and their weak signals are present.
-- **What does not exist:** Proposed structured errors, rollback, platform gates, and CI are not implemented.
+- **What exists:** The CURRENT/DEBT paths and weak signals in the allocation and capacity view are present.
+- **What does not exist:** The proposed correction boundary in the allocation and capacity view is not implemented.
 
 <a id="a10-04"></a>
 ### A10-04 — OS and tooling
@@ -125,7 +125,7 @@ flowchart LR
 | Purpose and scope | Group os and tooling failures by detection boundary and current response. |
 | Evidence/status | Repository evidence and audit classification. |
 | Source evidence | [orderbook.hpp](../../include/orderbook.hpp), [orderbook.cpp](../../src/orderbook.cpp), [price_level.hpp](../../include/price_level.hpp), [price_level.cpp](../../src/price_level.cpp), [object_pool.hpp](../../include/object_pool.hpp), [order.hpp](../../include/order.hpp), [itch_parser.hpp](../../include/itch_parser.hpp), [itch_book_replay.cpp](../../benchmarks/itch_book_replay.cpp), [rdtsc_timer.hpp](../../include/rdtsc_timer.hpp), [CMakeLists.txt](../../CMakeLists.txt) |
-| Backlog | [PRO-06](../../ENGINEERING_BACKLOG.md#pro-06--specify-portable-file-mapping-and-prefault-behavior), [BEN-05](../../ENGINEERING_BACKLOG.md#ben-05--verify-cpu-affinity-tsc-capability-and-platform-gating), [INF-01](../../ENGINEERING_BACKLOG.md#inf-01--establish-a-compiler-and-verification-ci-matrix), [INF-02](../../ENGINEERING_BACKLOG.md#inf-02--modernize-target-scoped-cmake-behavior) |
+| Backlog | [PRO-06](../../ENGINEERING_BACKLOG.md#pro-06--specify-portable-file-mapping-and-prefault-behavior), [BEN-05](../../ENGINEERING_BACKLOG.md#ben-05--verify-cpu-affinity-tsc-capability-and-platform-gating), [INF-01](../../ENGINEERING_BACKLOG.md#inf-01--establish-a-compiler-and-verification-ci-matrix), [INF-02](../../ENGINEERING_BACKLOG.md#inf-02--modernize-target-scoped-cmake-behavior), [PRO-01](../../ENGINEERING_BACKLOG.md#pro-01--introduce-structured-framing-and-decode-outcomes) |
 | Findings | [HEL-025](11-current-technical-debt-overlay.md#hel-025), [HEL-026](11-current-technical-debt-overlay.md#hel-026), [HEL-030](11-current-technical-debt-overlay.md#hel-030), [HEL-046](11-current-technical-debt-overlay.md#hel-046), [HEL-047](11-current-technical-debt-overlay.md#hel-047) |
 | Related atlas material | — |
 
@@ -153,8 +153,8 @@ flowchart LR
   - O --> E
   - E --> M
   - M -.-> P
-- **What exists:** The CURRENT/DEBT paths and their weak signals are present.
-- **What does not exist:** Proposed structured errors, rollback, platform gates, and CI are not implemented.
+- **What exists:** The CURRENT/DEBT paths and weak signals in the os and tooling view are present.
+- **What does not exist:** The proposed correction boundary in the os and tooling view is not implemented.
 
 <a id="a10-05"></a>
 ### A10-05 — Timing and platform
@@ -194,8 +194,8 @@ flowchart LR
   - T -->|summary| S
   - Z -.-> V
   - S -.-> V
-- **What exists:** The CURRENT/DEBT paths and their weak signals are present.
-- **What does not exist:** Proposed structured errors, rollback, platform gates, and CI are not implemented.
+- **What exists:** The CURRENT/DEBT paths and weak signals in the timing and platform view are present.
+- **What does not exist:** The proposed correction boundary in the timing and platform view is not implemented.
 
 ## Complete failure matrix
 

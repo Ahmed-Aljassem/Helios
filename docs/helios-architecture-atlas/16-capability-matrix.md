@@ -9,7 +9,7 @@ Controlled status values are: CURRENT, CURRENT-DEBT, INVALID, PROPOSED, RESEARCH
 | Purpose and scope | Give a visual index from repository capability through correction and wider context. |
 | Evidence/status | Mixed; every node carries its controlled status. |
 | Source evidence | [README.md](../../README.md), [CMakeLists.txt](../../CMakeLists.txt) |
-| Backlog | [COR-01](../../ENGINEERING_BACKLOG.md#cor-01--establish-a-lossless-price-domain-model), [VER-02](../../ENGINEERING_BACKLOG.md#ver-02--build-a-reference-book-and-differential-invariant-harness), [BEN-01](../../ENGINEERING_BACKLOG.md#ben-01--make-build-and-benchmark-provenance-reproducible), [FUT-02](../../ENGINEERING_BACKLOG.md#fut-02--design-multi-symbol-single-writer-sharding), [FUT-06](../../ENGINEERING_BACKLOG.md#fut-06--design-real-time-ingestion-boundaries) |
+| Backlog | [COR-01](../../ENGINEERING_BACKLOG.md#cor-01--establish-a-lossless-price-domain-model), [VER-02](../../ENGINEERING_BACKLOG.md#ver-02--build-a-reference-book-and-differential-invariant-harness), [BEN-01](../../ENGINEERING_BACKLOG.md#ben-01--make-build-and-benchmark-provenance-reproducible), [FUT-02](../../ENGINEERING_BACKLOG.md#fut-02--design-multi-symbol-single-writer-sharding), [FUT-06](../../ENGINEERING_BACKLOG.md#fut-06--design-real-time-ingestion-boundaries), [COR-02](../../ENGINEERING_BACKLOG.md#cor-02--define-order-id-uniqueness-and-namespace-policy) |
 | Findings | [HEL-001](11-current-technical-debt-overlay.md#hel-001), [HEL-002](11-current-technical-debt-overlay.md#hel-002), [HEL-005](11-current-technical-debt-overlay.md#hel-005), [HEL-011](11-current-technical-debt-overlay.md#hel-011), [HEL-037](11-current-technical-debt-overlay.md#hel-037), [HEL-042](11-current-technical-debt-overlay.md#hel-042) |
 | Related atlas material | — |
 
@@ -52,7 +52,7 @@ flowchart LR
 | Occupancy bitmap/best caches | CURRENT-DEBT | bitmap code | word-scan tail unmeasured; invariant checker absent | BEN-09, VER-02 | verified cache/bitmap equivalence | hierarchical bitmap/alternative | High |
 | Pooled stable order storage | CURRENT-DEBT | `ObjectPool<Order>` | growth cliffs; generic destruction contract | COR-07, BEN-02 | explicit capacity/allocation map | specialized pool/NUMA study | Very High |
 | External-ID lookup | INVALID | `orders_[id]` | duplicate can orphan live order | COR-02 | reject/transactional uniqueness | measured index alternatives | Very High |
-| Add/cancel/modify | CURRENT-DEBT | `src/orderbook.cpp` | zero quantity, priority, exception safety | COR-02–07 | atomic, typed, invariant-preserving APIs | richer semantics only by decision | Very High |
+| Add/cancel/modify | CURRENT-DEBT | `src/orderbook.cpp` | zero quantity, priority, exception safety | COR-02, COR-03, COR-04, COR-05, COR-06, COR-07 | atomic, typed, invariant-preserving APIs | richer semantics only by decision | Very High |
 | Synthetic market sweep | CURRENT-DEBT | `executeMarketOrder` | reconstruction/matching boundary blurred | COR-03, COR-08 | explicitly separated API/model | matching scope decision | High |
 | BinaryFILE framing | CURRENT-DEBT | `parseBuffer` | terminator/truncation/status conflated | PRO-01 | structured outcomes + offsets | live framing adapter | High |
 | Modeled ITCH decoding | CURRENT-DEBT | `decode` A/F/E/C/X/D/U | minimum length/domain checks only | PRO-01, VER-01 | exact golden-verified decoding | more message families as justified | Very High |

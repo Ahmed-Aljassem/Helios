@@ -9,7 +9,7 @@ Each sequence is intentionally narrow. `alt` branches expose present rejection/s
 | Purpose and scope | Trace the current historical startup path, including transformations, ownership, rejection paths, counters, and invariant effects. |
 | Evidence/status | Repository evidence; invalid/debt participants are labeled in sequence names. |
 | Source evidence | [itch_book_replay.cpp](../../benchmarks/itch_book_replay.cpp), [orderbook.hpp](../../include/orderbook.hpp), [book_replay.hpp](../../include/book_replay.hpp) |
-| Backlog | [COR-07](../../ENGINEERING_BACKLOG.md#cor-07--define-capacity-and-growth-policy), [PRO-06](../../ENGINEERING_BACKLOG.md#pro-06--specify-portable-file-mapping-and-prefault-behavior) |
+| Backlog | [COR-07](../../ENGINEERING_BACKLOG.md#cor-07--define-capacity-and-growth-policy), [PRO-06](../../ENGINEERING_BACKLOG.md#pro-06--specify-portable-file-mapping-and-prefault-behavior), [BEN-10](../../ENGINEERING_BACKLOG.md#ben-10--measure-compact-versus-cache-line-aligned-order-layouts) |
 | Findings | [HEL-026](11-current-technical-debt-overlay.md#hel-026), [HEL-035](11-current-technical-debt-overlay.md#hel-035), [HEL-036](11-current-technical-debt-overlay.md#hel-036) |
 | Related atlas material | — |
 
@@ -34,8 +34,8 @@ sequenceDiagram
   - X->>OS: open / fstat / mmap
   - OS-->>X: fd, size, mapped bytes
   - X->>B: construct dense ladders + pool reserve
-- **What exists:** The synchronous calls, ownership transitions, allocations, counters, and state changes shown are implemented.
-- **What does not exist:** No implied rollback, structured anomaly stream, concurrency, or production transport beyond what is named.
+- **What exists:** The calls, transformations, counters, and state changes in the historical startup flow are present in tracked code.
+- **What does not exist:** The historical startup flow implies no rollback, structured anomaly stream, concurrency, or production transport beyond what it names.
 
 <a id="a05-02"></a>
 ### A05-02 — mmap and parser setup
@@ -67,8 +67,8 @@ sequenceDiagram
   - OS-->>X: mapping or MAP_FAILED
   - X->>OS: madvise sequential + will-need (returns ignored)
   - X->>OS: touch one byte per assumed 4096-byte page
-- **What exists:** The synchronous calls, ownership transitions, allocations, counters, and state changes shown are implemented.
-- **What does not exist:** No implied rollback, structured anomaly stream, concurrency, or production transport beyond what is named.
+- **What exists:** The calls, transformations, counters, and state changes in the mmap and parser setup flow are present in tracked code.
+- **What does not exist:** The mmap and parser setup flow implies no rollback, structured anomaly stream, concurrency, or production transport beyond what it names.
 
 <a id="a05-03"></a>
 ### A05-03 — BinaryFILE framing
@@ -107,8 +107,8 @@ sequenceDiagram
   - P-->>C: stop, no structured terminator outcome
   - P-->>C: stop, no truncated-tail outcome
   - P->>D: body pointer + declared length
-- **What exists:** The synchronous calls, ownership transitions, allocations, counters, and state changes shown are implemented.
-- **What does not exist:** No implied rollback, structured anomaly stream, concurrency, or production transport beyond what is named.
+- **What exists:** The calls, transformations, counters, and state changes in the binaryfile framing flow are present in tracked code.
+- **What does not exist:** The binaryfile framing flow implies no rollback, structured anomaly stream, concurrency, or production transport beyond what it names.
 
 <a id="a05-04"></a>
 ### A05-04 — Add order replay
@@ -152,8 +152,8 @@ sequenceDiagram
   - R->>R: compare raw 8-byte symbol
   - R-->>P: skip mutation; seen still increments
   - R->>R: Price(4) / 100 (lossy)
-- **What exists:** The synchronous calls, ownership transitions, allocations, counters, and state changes shown are implemented.
-- **What does not exist:** No implied rollback, structured anomaly stream, concurrency, or production transport beyond what is named.
+- **What exists:** The calls, transformations, counters, and state changes in the add order replay flow are present in tracked code.
+- **What does not exist:** The add order replay flow implies no rollback, structured anomaly stream, concurrency, or production transport beyond what it names.
 
 <a id="a05-05"></a>
 ### A05-05 — Cancel order replay
@@ -193,8 +193,8 @@ sequenceDiagram
   - R->>B: getOrder(ref)
   - B-->>R: null; silently skip
   - R->>B: modifyOrder(ref, qty-cancel)
-- **What exists:** The synchronous calls, ownership transitions, allocations, counters, and state changes shown are implemented.
-- **What does not exist:** No implied rollback, structured anomaly stream, concurrency, or production transport beyond what is named.
+- **What exists:** The calls, transformations, counters, and state changes in the cancel order replay flow are present in tracked code.
+- **What does not exist:** The cancel order replay flow implies no rollback, structured anomaly stream, concurrency, or production transport beyond what it names.
 
 <a id="a05-06"></a>
 ### A05-06 — Partial execution replay
@@ -232,8 +232,8 @@ sequenceDiagram
   - R->>B: getOrder(ref)
   - B-->>R: Order* or null
   - R->>B: modifyOrder(ref, quantity-shares)
-- **What exists:** The synchronous calls, ownership transitions, allocations, counters, and state changes shown are implemented.
-- **What does not exist:** No implied rollback, structured anomaly stream, concurrency, or production transport beyond what is named.
+- **What exists:** The calls, transformations, counters, and state changes in the partial execution replay flow are present in tracked code.
+- **What does not exist:** The partial execution replay flow implies no rollback, structured anomaly stream, concurrency, or production transport beyond what it names.
 
 <a id="a05-07"></a>
 ### A05-07 — Full execution replay
@@ -243,7 +243,7 @@ sequenceDiagram
 | Purpose and scope | Trace the current full execution replay path, including transformations, ownership, rejection paths, counters, and invariant effects. |
 | Evidence/status | Repository evidence; invalid/debt participants are labeled in sequence names. |
 | Source evidence | [book_replay.hpp](../../include/book_replay.hpp), [orderbook.cpp](../../src/orderbook.cpp) |
-| Backlog | [PRO-02](../../ENGINEERING_BACKLOG.md#pro-02--validate-session-and-order-lifecycle-integrity), [VER-02](../../ENGINEERING_BACKLOG.md#ver-02--build-a-reference-book-and-differential-invariant-harness) |
+| Backlog | [PRO-02](../../ENGINEERING_BACKLOG.md#pro-02--validate-session-and-order-lifecycle-integrity), [VER-02](../../ENGINEERING_BACKLOG.md#ver-02--build-a-reference-book-and-differential-invariant-harness), [PRO-05](../../ENGINEERING_BACKLOG.md#pro-05--preserve-diagnostic-feed-metadata) |
 | Findings | [HEL-037](11-current-technical-debt-overlay.md#hel-037), [HEL-038](11-current-technical-debt-overlay.md#hel-038) |
 | Related atlas material | — |
 
@@ -270,8 +270,8 @@ sequenceDiagram
   - R->>B: getOrder(ref)
   - R->>B: cancelOrder(ref)
   - B->>S: unlink + aggregate/count update + map erase + pool return
-- **What exists:** The synchronous calls, ownership transitions, allocations, counters, and state changes shown are implemented.
-- **What does not exist:** No implied rollback, structured anomaly stream, concurrency, or production transport beyond what is named.
+- **What exists:** The calls, transformations, counters, and state changes in the full execution replay flow are present in tracked code.
+- **What does not exist:** The full execution replay flow implies no rollback, structured anomaly stream, concurrency, or production transport beyond what it names.
 
 <a id="a05-08"></a>
 ### A05-08 — Delete replay
@@ -307,8 +307,8 @@ sequenceDiagram
   - R->>B: getOrder(ref)
   - R->>B: cancelOrder(ref)
   - B-->>R: true after coordinated removal
-- **What exists:** The synchronous calls, ownership transitions, allocations, counters, and state changes shown are implemented.
-- **What does not exist:** No implied rollback, structured anomaly stream, concurrency, or production transport beyond what is named.
+- **What exists:** The calls, transformations, counters, and state changes in the delete replay flow are present in tracked code.
+- **What does not exist:** The delete replay flow implies no rollback, structured anomaly stream, concurrency, or production transport beyond what it names.
 
 <a id="a05-09"></a>
 ### A05-09 — Replace replay
@@ -349,8 +349,8 @@ sequenceDiagram
   - R->>B: getOrder(oldRef)
   - R->>R: copy old side
   - R->>B: cancelOrder(oldRef)
-- **What exists:** The synchronous calls, ownership transitions, allocations, counters, and state changes shown are implemented.
-- **What does not exist:** No implied rollback, structured anomaly stream, concurrency, or production transport beyond what is named.
+- **What exists:** The calls, transformations, counters, and state changes in the replace replay flow are present in tracked code.
+- **What does not exist:** The replace replay flow implies no rollback, structured anomaly stream, concurrency, or production transport beyond what it names.
 
 <a id="a05-10"></a>
 ### A05-10 — Synthetic market buy
@@ -360,7 +360,7 @@ sequenceDiagram
 | Purpose and scope | Trace the current synthetic market buy path, including transformations, ownership, rejection paths, counters, and invariant effects. |
 | Evidence/status | Repository evidence; invalid/debt participants are labeled in sequence names. |
 | Source evidence | [orderbook.cpp](../../src/orderbook.cpp) |
-| Backlog | [COR-03](../../ENGINEERING_BACKLOG.md#cor-03--define-zero-quantity-lifecycle-semantics), [COR-08](../../ENGINEERING_BACKLOG.md#cor-08--separate-reconstruction-and-matching-semantics), [VER-02](../../ENGINEERING_BACKLOG.md#ver-02--build-a-reference-book-and-differential-invariant-harness) |
+| Backlog | [COR-03](../../ENGINEERING_BACKLOG.md#cor-03--define-zero-quantity-lifecycle-semantics), [COR-08](../../ENGINEERING_BACKLOG.md#cor-08--separate-reconstruction-and-matching-semantics), [VER-02](../../ENGINEERING_BACKLOG.md#ver-02--build-a-reference-book-and-differential-invariant-harness), [BEN-09](../../ENGINEERING_BACKLOG.md#ben-09--measure-bitmap-refresh-complexity-and-alternatives) |
 | Findings | [HEL-003](11-current-technical-debt-overlay.md#hel-003), [HEL-027](11-current-technical-debt-overlay.md#hel-027), [HEL-042](11-current-technical-debt-overlay.md#hel-042) |
 | Related atlas material | — |
 
@@ -391,8 +391,8 @@ sequenceDiagram
   - B->>A: select cached best ask level
   - B->>L: compute fill from total quantity
   - B->>S: full head: erase, unlink, deallocate, decrement
-- **What exists:** The synchronous calls, ownership transitions, allocations, counters, and state changes shown are implemented.
-- **What does not exist:** No implied rollback, structured anomaly stream, concurrency, or production transport beyond what is named.
+- **What exists:** The calls, transformations, counters, and state changes in the synthetic market buy flow are present in tracked code.
+- **What does not exist:** The synthetic market buy flow implies no rollback, structured anomaly stream, concurrency, or production transport beyond what it names.
 
 <a id="a05-11"></a>
 ### A05-11 — Synthetic market sell
@@ -431,8 +431,8 @@ sequenceDiagram
   - B->>A: select cached best bid level
   - B->>L: consume head orders FIFO
   - B->>S: erase/deallocate fully filled orders
-- **What exists:** The synchronous calls, ownership transitions, allocations, counters, and state changes shown are implemented.
-- **What does not exist:** No implied rollback, structured anomaly stream, concurrency, or production transport beyond what is named.
+- **What exists:** The calls, transformations, counters, and state changes in the synthetic market sell flow are present in tracked code.
+- **What does not exist:** The synthetic market sell flow implies no rollback, structured anomaly stream, concurrency, or production transport beyond what it names.
 
 <a id="a05-12"></a>
 ### A05-12 — Primary Add benchmark
@@ -470,8 +470,8 @@ sequenceDiagram
   - X->>T: pin thread; calibrate TSC; measure overhead
   - X->>X: pre-generate inputs + warm-up
   - X->>T: tscStart / tscEnd
-- **What exists:** The synchronous calls, ownership transitions, allocations, counters, and state changes shown are implemented.
-- **What does not exist:** No implied rollback, structured anomaly stream, concurrency, or production transport beyond what is named.
+- **What exists:** The calls, transformations, counters, and state changes in the primary add benchmark flow are present in tracked code.
+- **What does not exist:** The primary add benchmark flow implies no rollback, structured anomaly stream, concurrency, or production transport beyond what it names.
 
 <a id="a05-13"></a>
 ### A05-13 — Test execution
@@ -505,8 +505,8 @@ sequenceDiagram
   - C->>T: run OrderBookTests
   - T->>L: construct/call book across registered cases
   - L-->>T: state/return values
-- **What exists:** The synchronous calls, ownership transitions, allocations, counters, and state changes shown are implemented.
-- **What does not exist:** No implied rollback, structured anomaly stream, concurrency, or production transport beyond what is named.
+- **What exists:** The calls, transformations, counters, and state changes in the test execution flow are present in tracked code.
+- **What does not exist:** The test execution flow implies no rollback, structured anomaly stream, concurrency, or production transport beyond what it names.
 
 <a id="a05-14"></a>
 ### A05-14 — Destruction
@@ -540,5 +540,5 @@ sequenceDiagram
   - B->>M: destroy members in reverse declaration order
   - M->>P: pool destructor releases raw chunk arrays
   - S->>O: munmap + close in executable path
-- **What exists:** The synchronous calls, ownership transitions, allocations, counters, and state changes shown are implemented.
-- **What does not exist:** No implied rollback, structured anomaly stream, concurrency, or production transport beyond what is named.
+- **What exists:** The calls, transformations, counters, and state changes in the destruction flow are present in tracked code.
+- **What does not exist:** The destruction flow implies no rollback, structured anomaly stream, concurrency, or production transport beyond what it names.

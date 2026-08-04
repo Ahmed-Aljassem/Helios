@@ -70,7 +70,7 @@ flowchart LR
 | Purpose and scope | Make the three legitimate Helios roles and their non-claims redrawable. |
 | Evidence/status | Repository evidence for roles; surrounding systems are context. |
 | Source evidence | [itch_parser.hpp](../../include/itch_parser.hpp), [book_replay.hpp](../../include/book_replay.hpp), [orderbook.hpp](../../include/orderbook.hpp), [benchmark_orderbook.cpp](../../benchmarks/benchmark_orderbook.cpp) |
-| Backlog | [COR-08](../../ENGINEERING_BACKLOG.md#cor-08--separate-reconstruction-and-matching-semantics), [DOC-01](../../ENGINEERING_BACKLOG.md#doc-01--reconcile-architecture-and-evidence-documentation) |
+| Backlog | [COR-08](../../ENGINEERING_BACKLOG.md#cor-08--separate-reconstruction-and-matching-semantics), [DOC-01](../../ENGINEERING_BACKLOG.md#doc-01--reconcile-architecture-and-evidence-documentation), [VER-01](../../ENGINEERING_BACKLOG.md#ver-01--build-protocol-golden-fixtures) |
 | Findings | [HEL-011](11-current-technical-debt-overlay.md#hel-011), [HEL-042](11-current-technical-debt-overlay.md#hel-042) |
 | Related atlas material | — |
 

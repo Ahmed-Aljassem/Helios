@@ -41,8 +41,8 @@ flowchart TB
 - **Important edges**
   - Every stage requires verification evidence from the previous one.
   - Networking does not enter the current core directly.
-- **What exists:** Stage 1 has partial current ingredients, but the checked/structured contract is not complete.
-- **What does not exist:** Stages 2–8 are not implemented.
+- **What exists:** Only the historical decoder and single-writer book concepts inform the eight-stage live maturity ladder view today.
+- **What does not exist:** The live/recovery/publication components in the eight-stage live maturity ladder view are not implemented.
 
 <a id="a14-02"></a>
 ### A14-02 — Sequencing, redundancy, and recovery
@@ -82,8 +82,8 @@ flowchart LR
   - S -->|in-order| N
   - S -.->|gap/divergence| R
   - R -.->|recovered sequence| N
-- **What exists:** Only the single-writer book concept and historical decoder provide current research evidence.
-- **What does not exist:** No live receiver, redundancy, gap recovery, bounded queue, publisher, or kernel-bypass path exists.
+- **What exists:** Only the historical decoder and single-writer book concepts inform the sequencing, redundancy, and recovery view today.
+- **What does not exist:** The live/recovery/publication components in the sequencing, redundancy, and recovery view are not implemented.
 
 <a id="a14-03"></a>
 ### A14-03 — Buffering and backpressure
@@ -121,8 +121,8 @@ flowchart LR
   - Q -->|ordered dequeue| O
   - O -.->|snapshot/delta| P
   - Q -->|high-water/overflow| F
-- **What exists:** Only the single-writer book concept and historical decoder provide current research evidence.
-- **What does not exist:** No live receiver, redundancy, gap recovery, bounded queue, publisher, or kernel-bypass path exists.
+- **What exists:** Only the historical decoder and single-writer book concepts inform the buffering and backpressure view today.
+- **What does not exist:** The live/recovery/publication components in the buffering and backpressure view are not implemented.
 
 <a id="a14-04"></a>
 ### A14-04 — Normalized publication boundary
@@ -160,5 +160,5 @@ flowchart LR
   - B --> S
   - S -.-> C
   - K -.->|optional receiver optimization after proof| N
-- **What exists:** Only the single-writer book concept and historical decoder provide current research evidence.
-- **What does not exist:** No live receiver, redundancy, gap recovery, bounded queue, publisher, or kernel-bypass path exists.
+- **What exists:** Only the historical decoder and single-writer book concepts inform the normalized publication boundary view today.
+- **What does not exist:** The live/recovery/publication components in the normalized publication boundary view are not implemented.

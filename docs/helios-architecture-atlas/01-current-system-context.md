@@ -9,7 +9,7 @@ The solid boundary is intentionally small: historical-file tools, a single-write
 | Purpose and scope | Place users and tracked Helios executables around the current software boundary. |
 | Evidence/status | Repository evidence. |
 | Source evidence | [CMakeLists.txt](../../CMakeLists.txt), [itch_replay.cpp](../../benchmarks/itch_replay.cpp), [itch_book_replay.cpp](../../benchmarks/itch_book_replay.cpp), [test_orderbook.cpp](../../tests/test_orderbook.cpp) |
-| Backlog | [DOC-01](../../ENGINEERING_BACKLOG.md#doc-01--reconcile-architecture-and-evidence-documentation), [VER-06](../../ENGINEERING_BACKLOG.md#ver-06--establish-artifact-and-replay-provenance) |
+| Backlog | [DOC-01](../../ENGINEERING_BACKLOG.md#doc-01--reconcile-architecture-and-evidence-documentation), [VER-06](../../ENGINEERING_BACKLOG.md#ver-06--establish-artifact-and-replay-provenance), [VER-01](../../ENGINEERING_BACKLOG.md#ver-01--build-protocol-golden-fixtures) |
 | Findings | [HEL-007](11-current-technical-debt-overlay.md#hel-007), [HEL-011](11-current-technical-debt-overlay.md#hel-011), [HEL-048](11-current-technical-debt-overlay.md#hel-048) |
 | Related atlas material | — |
 

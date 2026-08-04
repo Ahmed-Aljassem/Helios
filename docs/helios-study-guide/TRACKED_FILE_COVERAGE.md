@@ -1,6 +1,6 @@
 # Tracked File Coverage and Evidence Catalog
 
-**Repository evidence:** `git ls-files` at the audited revision reports 48 paths. Every path is mapped below. The 23 code/header/test/benchmark/build/script files have dedicated walkthroughs under [`files/`](files/README.md). The 25 documentation/evidence paths are interpreted here and cross-linked to shared chapters. Opaque Git internals, caches, and untracked binaries are intentionally outside scope.
+**Repository evidence:** the pre-guide baseline audited by this textbook contained 48 tracked product/source/evidence paths. Every baseline path is mapped below. The 23 code/header/test/benchmark/build/script files have dedicated walkthroughs under [`files/`](files/README.md). The 25 baseline documentation/evidence paths are interpreted here and cross-linked to shared chapters. The repository now also tracks `ENGINEERING_BACKLOG.md` and the study-guide files themselves; those documentation-system files are outside this baseline product inventory. Opaque Git internals, caches, and untracked binaries remain outside scope.
 
 ## Complete inventory
 
@@ -167,7 +167,7 @@ Analogous notes for a 7.7 GB full capture. It is evidence that the project was e
 
 ## Intentionally excluded material
 
-No Git-tracked path is excluded. Generated files outside `git ls-files` are not line-reviewed unless surfaced by the tracked evidence narrative; opaque binaries, build caches, dependency indexes, Git internals, and raw market-data captures are intentionally outside this textbook. `ENGINEERING_BACKLOG.md` is untracked but was read first as required and used to keep HEL identifiers/priorities consistent; it is planning input, not part of the 48-file tracked inventory.
+No path from the 48-file pre-guide baseline is excluded. Generated files outside that baseline are not line-reviewed unless surfaced by the tracked evidence narrative; opaque binaries, build caches, dependency indexes, Git internals, and raw market-data captures are intentionally outside this textbook. `ENGINEERING_BACKLOG.md` was reviewed and is now tracked, but it remains planning input rather than part of the baseline product/source/evidence inventory.
 
 ## Coverage invariants
 
